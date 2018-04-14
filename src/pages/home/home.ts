@@ -14,9 +14,10 @@ export class HomePage {
     {title:'Locations', pic:'assets/imgs/cafe2.jpg', pushPage: 'LocationsPage'}
   ];
 
+  logPage: any
 
   constructor(public navCtrl: NavController) {
-
+    this.logPage = 'LoginPage';
   }
 
 }
