@@ -4,6 +4,9 @@ import { HomePage } from '../home/home';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
+import { UserServiceProvider } from '../../providers/user-service/user-service';
+
+
 /**
  * Generated class for the RegisterPage page.
  *
@@ -25,7 +28,8 @@ export class RegisterPage {
 }
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public alertCtrl: AlertController, private afAuth: AngularFireAuth) {
+    public alertCtrl: AlertController, private afAuth: AngularFireAuth,
+  private userService: UserServiceProvider) {
   }
 
   ionViewDidLoad() {
@@ -41,7 +45,7 @@ export class RegisterPage {
     });
     theAlert.present();
 
-  }
+  } 
 
   registerAccount() {
     if (this.reg.passWrd1 != this.reg.passWrd2) {
@@ -57,9 +61,8 @@ export class RegisterPage {
   }
 
   regSuccess(result) {
-    this.displayAlert(result.email, 'Account created for this email address');
-    this.afAuth.auth.signInWithEmailAndPassword(this.reg.email, this.reg.passWrd1)
+    
+    this.userService.logOn(this.reg.email, this.reg.passWrd1)
       .then(res => this.navCtrl.push(HomePage))
-      .catch(err => this.displayAlert('Error!', err));
   }
 }
