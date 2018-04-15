@@ -25,9 +25,9 @@
               {{cup.name}}
             </ion-card-title>
           </ion-col>
-          <ion-col>sm:{{cup.small | currency:'USD':true}}</ion-col>  
-          <ion-col>md:{{cup.medium | currency:'USD':true}}</ion-col>
-          <ion-col>lg:{{cup.large | currency:'USD':true}}</ion-col>
+          <ion-col>sm:{{cup.small | currency:'USD':'symbol'}}</ion-col>  
+          <ion-col>md:{{cup.medium | currency:'USD':'symbol'}}</ion-col>
+          <ion-col>lg:{{cup.large | currency:'USD':'symbol'}}</ion-col>
         </ion-row>
               
       </ion-card-content>

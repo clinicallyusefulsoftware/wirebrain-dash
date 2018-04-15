@@ -17,12 +17,14 @@ import { MenuServiceProvider } from '../../providers/menu-service/menu-service';
 export class MenuPage implements OnInit {
 
   myCoffee: any[] = [];
+  detailPage: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public menuList: MenuServiceProvider) {
   }
 
   ngOnInit() {
+    this.detailPage = 'MenuDetailPage';
     this.grabMenu();
   }
 
@@ -34,9 +36,11 @@ export class MenuPage implements OnInit {
     this.menuList.getCafeDB()
       .then(coffee => this.myCoffee = coffee);
   }
-  
+
   chooseCafe(id) {
-    console.log(id);
+    this.navCtrl.push(this.detailPage, {
+      id: id
+    });
   }
-  
+
 }
