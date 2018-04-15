@@ -4,7 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import 'firebase/app';
 import { UserServiceProvider } from '../../providers/user-service/user-service';
 
-//import { FCM } from '@ionic-native/fcm';
+import { FCM } from '@ionic-native/fcm';
 
 @Component({
   selector: 'page-home',
@@ -16,14 +16,14 @@ export class HomePage implements OnInit {
     { title: 'Our Menu', pic: 'assets/imgs/soup1.jpg', pushPage: 'MenuPage' },
     { title: 'Account', pic: 'assets/imgs/coffee-people3.jpg', pushPage: 'AccountPage' },
     { title: 'About Us', pic: 'assets/imgs/coffee6.jpg', pushPage: 'AboutPage' },
-    { title:'Locations', pic:'assets/imgs/cafe2.jpg', pushPage: 'LocationsPage'}
+    { title: 'Locations', pic: 'assets/imgs/cafe2.jpg', pushPage: 'LocationsPage' }
   ];
 
   logPage: any
   loggedIn: any;
 
   constructor(public navCtrl: NavController, private afAuth: AngularFireAuth,
-    private userService: UserServiceProvider){ } //private fcm:FCM) 
+    private userService: UserServiceProvider, private fcm: FCM) { }
 
   ngOnInit() {
     
@@ -33,7 +33,7 @@ export class HomePage implements OnInit {
         this.loggedIn = this.userService.user = user.email;
       }
     })
-    //this.initFcm();
+    this.initFcm();
   }
   
   signOff() {
@@ -53,7 +53,7 @@ export class HomePage implements OnInit {
       })
   }
 
-  /* initFcm() {
+  initFcm() {
     this.fcm.onNotification().subscribe(data => {
       if (data.wasTapped) {
         console.log(data);
@@ -64,7 +64,7 @@ export class HomePage implements OnInit {
         this.userService.displayAlert(data.title, data.content);
     }  
   })
-} */
+}
 
 }
 
