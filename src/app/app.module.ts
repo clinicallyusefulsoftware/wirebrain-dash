@@ -14,6 +14,7 @@ import { UserServiceProvider } from '../providers/user-service/user-service';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { FCM } from '@ionic-native/fcm';
+import { MenuServiceProvider } from '../providers/menu-service/menu-service';
 
 
 export const firebaseConfig = {
@@ -47,7 +48,8 @@ export const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserServiceProvider,
-    FCM
+    FCM,
+    MenuServiceProvider
   ]
 })
 export class AppModule {}
