@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+//import * as firebase from 'firebase/app';
+import 'firebase/app';
 import { AlertController } from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';
@@ -12,7 +13,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
   and Angular DI.
 */
 @Injectable()
-export class UserServiceProvider {
+export class UserServiceProvider implements OnInit {
 
   items: FirebaseListObservable<any>;
   success: boolean;
@@ -21,10 +22,12 @@ export class UserServiceProvider {
   constructor(public alertCtrl: AlertController, private afAuth: AngularFireAuth,
   private storage: Storage, private fbDb: AngularFireDatabase) {
    
-    this.items = fbDb.list('/users')
-
   }
 
+  ngOnInit() {
+    this.items = this.fbDb.list('/users')
+  }
+  
   displayAlert(alertTitle, alertSub) {
     let theAlert = this.alertCtrl.create({
       title: alertTitle,
