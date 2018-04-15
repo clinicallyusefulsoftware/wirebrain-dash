@@ -16,6 +16,7 @@ export class UserServiceProvider {
 
   items: FirebaseListObservable<any>;
   success: boolean;
+  user: string;
 
   constructor(public alertCtrl: AlertController, private afAuth: AngularFireAuth,
   private storage: Storage, private fbDb: AngularFireDatabase) {
@@ -37,7 +38,10 @@ export class UserServiceProvider {
   logOut() {
   //this.storageControl('delete');
     this.afAuth.auth.signOut()
-      .then(LoggedOut => this.displayAlert('Logged out', 'Come back and visit soon'))
+      .then(LoggedOut => {
+        this.displayAlert('Logged out', 'Come back and visit soon')
+        this.success = false;
+      })
       .catch(err => this.displayAlert('Error logging out', err));  
 }
 
