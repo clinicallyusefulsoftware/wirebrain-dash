@@ -13,6 +13,9 @@ import { UserServiceProvider } from '../providers/user-service/user-service';
 
 import { IonicStorageModule } from '@ionic/storage';
 
+import { FCM } from '@ionic-native/fcm';
+
+
 export const firebaseConfig = {
   apiKey: "AIzaSyCGuPUOZcsbl4Aba1KkxO4HIeK9Dz8dIHM",
   authDomain: "wiredcoffee-fba00.firebaseapp.com",
@@ -43,7 +46,8 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserServiceProvider
+    UserServiceProvider,
+    FCM
   ]
 })
 export class AppModule {}
